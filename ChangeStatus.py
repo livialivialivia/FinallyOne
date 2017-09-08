@@ -153,12 +153,16 @@ class ChangeStatus(unittest.TestCase):
         Select(driver.find_element_by_css_selector("select.tOrderComment-dateSelect.tOrderComment-input")).select_by_visible_text("09:00")
         driver.find_element_by_css_selector("textarea.weui_textarea").clear()
         driver.find_element_by_css_selector("textarea.weui_textarea").send_keys(u"详细说明")
+        driver.find_element_by_xpath("(//input[@type='date'])[2]").clear()
+        driver.find_element_by_xpath("(//input[@type='date'])[2]").send_keys("2018-09-09")
         sleep(3)
         driver.find_element_by_link_text(u"确定").click()
         sleep(3)
         driver.find_element_by_css_selector("a.weui_btn_dialog.primary").click()
         print u"线索状态切换为排队蓄客"
         sleep(10)
+        driver.refresh()
+        sleep(5)
 
         #重新打开
         driver.find_element_by_xpath("//div[3]").click()
@@ -167,6 +171,7 @@ class ChangeStatus(unittest.TestCase):
         driver.find_element_by_css_selector("div.app-container > div.weui_dialog_confirm > div.weui_dialog > div.weui_dialog_ft > a.weui_btn_dialog.primary").click()
         sleep(5)
         driver.refresh()
+        sleep(5)
         print u"线索已经重新打开"
 
         #修改为签单完成
